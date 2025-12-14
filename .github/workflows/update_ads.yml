@@ -1,0 +1,35 @@
+name: Update Ads from WordPress
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Chạy tự động 6 tiếng một lần
+  workflow_dispatch:      # Cho phép bấm nút chạy tay để test
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Cấp quyền ghi file vào repo
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Requests
+        run: pip install requests
+
+      - name: Run Sync Script
+        env:
+          WP_API_KEY: ${{ secrets.WP_API_KEY }} # Nạp Key từ Secret vào
+        run: python sync_ads.py
+
+      - name: Commit and Push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 Auto-update ads from WordPress"
+          file_pattern: "ads.json"
