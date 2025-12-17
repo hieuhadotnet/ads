@@ -1,0 +1,10 @@
+{
+  "banner": {
+    "show": false,
+    "text": "",
+    "url": "",
+    "bg_color": "#333",
+    "text_color": "#fff"
+  },
+  "sidebar": []
+}
