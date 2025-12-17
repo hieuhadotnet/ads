@@ -3,7 +3,7 @@ import json
 import os
 
 # Cấu hình
-API_URL = "https://dealfindly.com/wp-json/aff-upog/v1/feed"
+API_URL = "https://hieuha.net/wp-json/aff-upog/v1/feed"
 API_KEY = os.environ.get("WP_API_KEY") # Lấy Key từ Secret
 OUTPUT_FILE = "ads.json"
 
